@@ -2,11 +2,11 @@ Flashcards App
 
 Plan:
 
-1. Choose Vite or Next.js and explain why
-2. Review broken down app and note what we will use within each section
+1. Choose Vite or Next.js and explain why ✅
+2. Review broken down app and note what we will use within each section ✅
    - App: All of the components
      - Header: Icon, title, subheading, just CSS ✅
-     - Form: Question field, answer field, add button, must use useState, add event listeners to the button for submitting info
+     - Form: Question field, answer field, add button, must use useState, add event listeners to the button for submitting info ✅
      - Flashcards: Container for individual cards, object to contain flashcard info which comes from input, array of objects, add to array when new flashcard is created
        - Flashcard: Add event listeners to each card for delete and for showing answers, CSS onClick changes
      - Footer: "Built with React" and logo
