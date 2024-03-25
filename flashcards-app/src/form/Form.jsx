@@ -11,18 +11,24 @@ const [newFlashcard, setNewFlashcard] = useState({
 
   function handleSubmit(e){
 e.preventDefault()
-if (newFlashcard === "") return 
+if (newFlashcard.question === "" && newFlashcard.answer === "") return 
 
-// onSubmit(newFlashcard)
 
-setNewFlashcard("")
+
+setNewFlashcard({
+    question: '',
+    answer: '',
+})
+
+console.log(newFlashcard);
 
   }
 
 
+
     return (
       
-        <form onChange={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="question">Question: </label>
         <input 
 
@@ -30,7 +36,7 @@ setNewFlashcard("")
         type="text" 
         name="question" 
         value={newFlashcard.question} 
-        onChange={e => setNewFlashcard(e.target.value)}
+        onChange={e => setNewFlashcard({...newFlashcard, question: e.target.value})}
         
         />
 
@@ -42,7 +48,7 @@ setNewFlashcard("")
         type="text" 
         name="answer" 
         value={newFlashcard.answer}
-        onChange={e => setNewFlashcard(e.target.value)}
+        onChange={e => setNewFlashcard({...newFlashcard, answer: e.target.value})}
         />
 
 <button type="submit">Add</button>
