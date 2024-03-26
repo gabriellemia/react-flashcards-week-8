@@ -10,7 +10,7 @@ function Flashcard({ question, answer, onDelete }) {
   };
 
   return (
-    <div style={{ marginBottom: "10px" }}>
+    <div>
       <div onClick={toggleAnswer} style={{ cursor: "pointer" }}>
         {showAnswer ? (
           <div>
