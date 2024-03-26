@@ -1,63 +1,45 @@
-import { useState } from 'react'
-import "./Form.css"
-
+import { useState } from "react";
+import "./Form.css";
+import Flashcard from "/src/flashcards/Flashcard.jsx";
 
 function Form() {
- 
-const [newFlashcard, setNewFlashcard] = useState({
-    question: '',
-    answer: '',
-  });
+  const [flashcards, setFlashcards] = useState([]);
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
 
-  function handleSubmit(e){
-e.preventDefault()
-if (newFlashcard.question === "" && newFlashcard.answer === "") return 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newFlashcard = { question, answer };
+    setFlashcards([...flashcards, newFlashcard]);
+    setQuestion("");
+    setAnswer("");
+  };
 
+  const handleDelete = (index) => {
+    const updatedFlashcards = [...flashcards];
+    updatedFlashcards.splice(index, 1);
+    setFlashcards(updatedFlashcards);
+  };
 
-
-setNewFlashcard({
-    question: '',
-    answer: '',
-})
-
-console.log(newFlashcard);
-
-  }
-
-
-
-    return (
-      
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="question">Question: </label>
-        <input 
-
-
-        type="text" 
-        name="question" 
-        value={newFlashcard.question} 
-        onChange={e => setNewFlashcard({...newFlashcard, question: e.target.value})}
-        
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="question">Question: </label>
+        <input
+          type="text"
+          placeholder="Enter question"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
         />
-
         <label htmlFor="answer">Answer: </label>
-        <input 
+        <input type="text" placeholder="Enter answer" value={answer} onChange={(e) => setAnswer(e.target.value)} />
+        <button type="submit">Add</button>
+      </form>
+      {flashcards.map((flashcard, index) => (
+        <Flashcard key={index} {...flashcard} onDelete={() => handleDelete(index)} />
+      ))}
+    </div>
+  );
+}
 
-
-
-        type="text" 
-        name="answer" 
-        value={newFlashcard.answer}
-        onChange={e => setNewFlashcard({...newFlashcard, answer: e.target.value})}
-        />
-
-<button type="submit">Add</button>
-
-    </form>
-
-
-     
-    )
-  }
-  
-  export default Form;
+export default Form;
